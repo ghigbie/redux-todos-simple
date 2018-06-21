@@ -4,6 +4,41 @@ const REMOVE_TODO = 'REMOVE_TODO';
 const ADD_GOAL = 'ADD_GOAL';
 const REMOVE_GOAL = 'REMOVE_GOAL';
 
+//action creators
+function addTodoAction(todo){
+    return {
+        type: ADD_TODO,
+        todo,
+    };
+}
+
+function removeTodoAction(id){
+    return{
+        type: REMOVE_TODO,
+        id,
+    };
+}
+
+function toggleTodoAction(id){
+    return {
+        type: TOGGLE_TODO,
+        id,
+    };
+}
+function addGoalAction(goal){
+    return{
+        type: ADD_GOAL,
+        goal,
+    };
+}
+function removeGoalAction(id){
+    return{
+        type: REMOVE_GOAL,
+        id,
+    };
+}
+
+
 function todos (state = [], action) {
     switch(action.type){
         case ADD_TODO:
@@ -63,20 +98,41 @@ const store = createStore(todos); //you can only pass a single reducer to the cr
 store.subscribe(() => {
     console.log(`The new stare is: ${store.getState()}`);
 });
-store.dispatch({
-    type: ADD_TODO,
-    todo: {
+
+store.dispatch(addTodoAction({
         id: 0,
         name: 'Learn Redux',
         complete: false
-    }
-});
-store.dispatch({
-    type: TOGGLE_TODO,
-    id: 0
-});
+}));
 
-store.dispatch({
-    type: REMOVE_TODO,
-    id: 0
-})
+store.dispatch(addTodoAction({
+        id: 1,
+        name: 'Wash the doggie',
+        complete: false
+})); 
+
+store.dispatch(addTodoAction({
+        id: 2,
+        name: 'Hunt rabbits',
+        complete: false
+}));
+
+store.dispatch(removeTodoAction(2));
+store.dispatch(toggleTodoAction(1));
+
+store.dispatch(addGoalAction({
+        id: 0,
+        name: 'Master redux'
+}));
+
+store.dispatch(addGoalAction({
+        id: 1,
+        name: 'Master react'
+}));
+
+store.dispatch(addGoalAction({
+        id:2,
+        name: 'Run a marathon'
+}));
+
+store.dispatch(removeGoalAction(2));
