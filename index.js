@@ -9,7 +9,8 @@ function todos (state = [], action) {
         case ADD_TODO:
             return state.concat([action.todo]);
         case TOGGLE_TODO:
-            return '';
+            return state.map((todo) => todo.id !== action.id ? todo : 
+                Object.assign({}, todo, { complete: !todo.complete})); //Object.assign creates a new object and merges all of the properties of thetodo onto the object excpet for complete, which is replaced bt the opposite.
         case REMOVE_TODO:
             return state.filter((todo) => todo.id !== action.id);
         default:
