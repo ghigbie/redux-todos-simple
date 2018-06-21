@@ -11,7 +11,7 @@ function todos (state = [], action) {
         case TOGGLE_TODO:
             return '';
         case REMOVE_TODO:
-            return '';
+            return state.filter((todo) => todo.id !== action.id);
         default:
             return state;
     }
