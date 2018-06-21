@@ -1,8 +1,8 @@
 const ADD_TODO = 'ADD_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
 const REMOVE_TODO = 'REMOVE_TODO';
-
-
+const ADD_GOAL = 'ADD_GOAL';
+const REMOVE_GOAL = 'REMOVE_GOAL';
 
 function todos (state = [], action) {
     switch(action.type){
@@ -30,7 +30,7 @@ function gaols (state = [], action){
 }
 
 function createStore (todos) {
-    let state
+    let state;
     let listeners = [];
     
     const getState = () => state;
