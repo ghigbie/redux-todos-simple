@@ -18,7 +18,7 @@ function todos (state = [], action) {
     }
 }
 
-function gaols (state = [], action){
+function goals (state = [], action){
     switch(action.type){
         case ADD_GOAL:
             return state.concat([action.goal]);
@@ -29,7 +29,14 @@ function gaols (state = [], action){
     }
 }
 
-function createStore (todos) {
+function app (state, action){
+    return{
+        todos: todos(state.todos, action), //we envoke the todos reducer and pass it the state and action
+        goals: goals(state.goals, action) //we envoke the goals reducer and pass it the state and action
+    };
+}
+
+function createStore (reducer) {
     let state;
     let listeners = [];
     
@@ -52,7 +59,7 @@ function createStore (todos) {
     };
 }
 
-const store = createStore(todos);
+const store = createStore(todos); //you can only pass a single reducer to the createStore function 
 store.subscribe(() => {
     console.log(`The new stare is: ${store.getState()}`);
 });
