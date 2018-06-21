@@ -4,7 +4,20 @@
   <title>Todos & Goals App</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <div>
+            <h1>Todos</h1>
+            <input id="todo" type="text" placeholder="Add Todo" />
+            <button id="todoBtn">Add Todo</button>
+            <ul id="todos"></ul>
+        </div>        
+        <div>
+            <h1>Goals</h1>
+            <input id="goal" type="text" placeholder="Add Todo" />
+            <button id="goalsBtn">Add Goal</button>
+            <ul id="goals"></ul>
+        </div>
+    </div>
     <script type="text/javacript">
         const ADD_TODO = 'ADD_TODO';
         const TOGGLE_TODO = 'TOGGLE_TODO';
