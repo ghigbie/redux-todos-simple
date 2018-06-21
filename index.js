@@ -29,7 +29,7 @@ function goals (state = [], action){
     }
 }
 
-function app (state, action){
+function app (state = {}, action){//this returns an object with the state
     return{
         todos: todos(state.todos, action), //we envoke the todos reducer and pass it the state and action
         goals: goals(state.goals, action) //we envoke the goals reducer and pass it the state and action
@@ -64,7 +64,7 @@ store.subscribe(() => {
     console.log(`The new stare is: ${store.getState()}`);
 });
 store.dispatch({
-    type: 'ADD_TODO',
+    type: ADD_TODO,
     todo: {
         id: 0,
         name: 'Learn Redux',
@@ -72,11 +72,11 @@ store.dispatch({
     }
 });
 store.dispatch({
-    type: 'TOGGLE_TODO',
+    type: TOGGLE_TODO,
     id: 0
 });
 
 store.dispatch({
-    type: 'REMOVE_TODO',
+    type: REMOVE_TODO,
     id: 0
 })
