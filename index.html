@@ -185,7 +185,11 @@
     function addTodoToDom(todo){
         const node = document.createElement('li');
         const text = document.createTextNode(todo.name);
+        const removeBtn = createRemoveButton(() => {
+            store.dispatch(removeTodoAction(todo.id));
+        });
         node.appendChild(text);
+        node.appendChild(removeBtn);
         document.getElementById('todos').appendChild(node);
         node.style.textDecoration = todo.complete ? 'line-through' : 'none';
         node.addEventListener('click', () => {
