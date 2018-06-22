@@ -123,6 +123,10 @@
         const store = createStore(app); //you can only pass a single reducer to the createStore function 
         store.subscribe(() => {
             console.log(`The new stare is: ${store.getState()}`);
+            const { goals, todos } = store.getState();
+            
+            todos.forEach(addTodosToDom);
+            goals.forEach(addGoalToDom);
         });
         
         
