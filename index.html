@@ -80,30 +80,33 @@
         id,
       };
     }
-    
+    //The todos reducer
     function todos (state = [], action) {
       switch(action.type) {
         case ADD_TODO :
-          return state.concat([action.todo])
+          return state.concat([action.todo]);
         case REMOVE_TODO :
-          return state.filter((todo) => todo.id !== action.id)
+          return state.filter((todo) => todo.id !== action.id); //This will return the todos that do not match the filtered option
         case TOGGLE_TODO :
           return state.map((todo) => todo.id !== action.id ? todo :
-            Object.assign({}, todo, { complete: !todo.complete }))
+            Object.assign({}, todo, { complete: !todo.complete })); //This function replaces the teh complete property on the object with the opposite, using the Object.assign function
         default :
-          return state
+          return state;
       }
     }
+    
+    //The goals reducer
     function goals (state = [], action) {
       switch(action.type) {
         case ADD_GOAL :
-          return state.concat([action.goal])
+          return state.concat([action.goal]);
         case REMOVE_GOAL :
-          return state.filter((goal) => goal.id !== action.id)
+          return state.filter((goal) => goal.id !== action.id); //This will return the goals that do not match the filtered goal
         default :
-          return state
+          return state;
       }
     }
+    //This is the function that is returned to combine the reducer
     function app (state = {}, action) {
       return {
         todos: todos(state.todos, action),
