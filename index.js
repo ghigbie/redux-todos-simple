@@ -99,6 +99,8 @@ store.subscribe(() => {
     console.log(`The new stare is: ${store.getState()}`);
 });
 
+
+//action dispatchers
 store.dispatch(addTodoAction({
         id: 0,
         name: 'Learn Redux',
