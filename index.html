@@ -194,13 +194,17 @@
         node.style.textDecoration = todo.complete ? 'line-through' : 'none';
         node.addEventListener('click', () => {
             store.dispatch(toggleTodoAction(todo.id));
-        })
+        });
     }  
     
     function addGoalToDom(goal){
         const node = document.createElement('li');
         const text = document.createTextNode(goal.name);
+        const removeBtn = createRemoveButton(() => {
+           store.dispatch(removeTodoAction(todo.id)); 
+        });
         node.appendChild(text);
+        node.appendChild(removeBtn);
         document.getElementById('goals').appendChild(node);
     }
     
