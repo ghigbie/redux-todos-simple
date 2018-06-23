@@ -204,6 +204,9 @@
       };  
       
       class Todos extends React.Component {
+        addItem = (e) => {
+          e.preventDefault();
+        }
         render(){
           return(
             <div>
@@ -219,7 +222,10 @@
           e.preventDefault();
           const name = this.input.value;
           this.input.value = ''
-          store.dispatch()
+          this.props.store.dispatch(addGoalAction({
+            name,
+            id: generateId()
+          }));
         }
         
         render(){
@@ -227,7 +233,7 @@
             <div>
               <h1>Goals List</h1>
               <input type="text"
-                     placeholder="Add Todo"
+                     placeholder="Add Goal"
                      ref={(input) => this.input = input} />
               <button onClick={this.addItem}>Add Todo</button>
               <List />
