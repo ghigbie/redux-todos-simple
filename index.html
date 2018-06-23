@@ -104,10 +104,7 @@
       }
       return store.dispatch(action);
     }
-    
-    function checker(store){
-      return function(next){
-        return function(action){
+    const checker = (store) => (next) => (action) => {
           const alertMessage = 'Nope! No bitcoin! That\'s a bad idea.';
           if(
             action.type === ADD_TODO &&
@@ -121,16 +118,14 @@
           ){
             return alert(alertMessage);
           }
-          return store.dispatch(action);
-        };
-      };
-    }
+          return next(action);
+    };
   
     //This is the store created
     const store = Redux.createStore(Redux.combineReducers({
       todos,
       goals
-    }));//Here the combine reducers function is passed in
+    }), Redux.applyMiddleware(checker));//Here the combine reducers function is passed in and middleware is passsed in as the second argument
     
     store.subscribe(() => {
       const { goals, todos } = store.getState();
@@ -144,7 +139,7 @@
       const input = document.getElementById('todo');
       const name = input.value;
       input.value = '';
-      checkAndDispatch(store, addTodoAction({
+      store.dispatch(addTodoAction({
         name,
         complete: false,
         id: generateId()
@@ -155,7 +150,7 @@
       const input = document.getElementById('goal');
       const name = input.value;
       input.value = '';
-      checkAndDispatch(store, addGoalAction({
+      store.dispatch(addGoalAction({
         id: generateId(),
         name,
       }));
