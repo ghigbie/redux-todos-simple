@@ -203,19 +203,33 @@
         );
       };  
       
-      function Goals (props) {
-        return(
-          <ul>
-            <li>GOALS</li>
-          </ul>
-        );
+      class Todos extends React.Component {
+        render(){
+          return(
+            <div>
+              <h1>Todos</h1>
+              <List />
+            </div>
+          );
+        };
+      }
+      
+      class Goals extends React.Component {
+        render(){
+          return(
+            <div>
+              <h1>Goals</h1>
+              <List />
+            </div>
+          );
+        };
       }
     
       class App extends React.Component{
         render(){
           return(
             <div>
-              <List />
+              <Todos />
               <Goals />
             </div>
           );
