@@ -87,15 +87,13 @@
           return state;
       }
     }
-    //This is the function that is returned to combine the reducer
-    function app (state = {}, action) {
-      return {
-        todos: todos(state.todos, action),
-        goals: goals(state.goals, action),
-      };
-    }
+  
     //This is the store created
-    const store = Redux.createStore(app);//Here the combine reducers function is passed in
+    const store = Redux.createStore(Redux.combineReducers({
+      todos,
+      goals
+    }));//Here the combine reducers function is passed in
+    
     store.subscribe(() => {
       const { goals, todos } = store.getState();
       document.getElementById('goals').innerHTML = '';
