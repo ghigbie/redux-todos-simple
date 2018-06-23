@@ -22,28 +22,8 @@
     function generateId () {
       return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
     }
-    // Library Code - this is a sinple recreation of redux
-    function createStore (reducer) {
-      let state;
-      let listeners = [];
-      const getState = () => state;
-      const subscribe = (listener) => {
-        listeners.push(listener);
-        return () => {
-          listeners = listeners.filter((l) => l !== listener);
-        };
-      };
-      const dispatch = (action) => {
-        state = reducer(state, action);
-        listeners.forEach((listener) => listener());
-      };
-      return {
-        getState,
-        subscribe,
-        dispatch,
-      };
-    }
-    // App Code - this code is used to control the app
+
+    // These are the vars used to actions
     const ADD_TODO = 'ADD_TODO';
     const REMOVE_TODO = 'REMOVE_TODO';
     const TOGGLE_TODO = 'TOGGLE_TODO';
@@ -115,7 +95,7 @@
       };
     }
     //This is the store created
-    const store = createStore(app);//Here the combine reducers function is passed in
+    const store = Redux.createStore(app);//Here the combine reducers function is passed in
     store.subscribe(() => {
       const { goals, todos } = store.getState();
       document.getElementById('goals').innerHTML = '';
