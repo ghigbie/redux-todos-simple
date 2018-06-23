@@ -206,11 +206,22 @@
       class Todos extends React.Component {
         addItem = (e) => {
           e.preventDefault();
+          const name = this.input.value;
+          this.input.value = '';
+          this.props.store.dispatch(addTodoAction({
+            name,
+            complete: false,
+            id: generateId()
+          }));
         }
         render(){
           return(
             <div>
               <h1>Todos List</h1>
+              <input type="text"
+                     palceholder="Add Todo"
+                     ref={(input) => this.input = input} />
+              <button onClick={this.addItem}>Add Todo</button>
               <List />
             </div>
           );
@@ -235,7 +246,7 @@
               <input type="text"
                      placeholder="Add Goal"
                      ref={(input) => this.input = input} />
-              <button onClick={this.addItem}>Add Todo</button>
+              <button onClick={this.addItem}>Add Goal</button>
               <List />
             </div>
           );
