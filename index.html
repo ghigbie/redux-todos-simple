@@ -94,13 +94,13 @@
         action.type === ADD_TODO &&
         action.todo.name.toLowerCase().includes('bitcoin')
       ){
-        alert(alertMessage);
+        return alert(alertMessage);
       }
       if(
         action.type === ADD_GOAL &&
         action.goal.name.toLowerCase().includes('bitcoin')
       ){
-        alert(alertMessage);
+        return alert(alertMessage);
       }
       return store.dispatch(action);
     }
