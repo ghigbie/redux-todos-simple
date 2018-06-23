@@ -122,7 +122,7 @@
       goals.forEach(addGoalToDOM);
       todos.forEach(addTodoToDOM);
     });
-    // DOM code - This 
+    // DOM code - This code is used to manipulate the DOM
     function addTodo () {
       const input = document.getElementById('todo');
       const name = input.value;
@@ -135,18 +135,18 @@
     }
     
     function addGoal () {
-      const input = document.getElementById('goal')
-      const name = input.value
-      input.value = ''
+      const input = document.getElementById('goal');
+      const name = input.value;
+      input.value = '';
       store.dispatch(addGoalAction({
         id: generateId(),
         name,
-      }))
+      }));
     }
     document.getElementById('todoBtn')
-      .addEventListener('click', addTodo)
+      .addEventListener('click', addTodo);
     document.getElementById('goalBtn')
-      .addEventListener('click', addGoal)
+      .addEventListener('click', addGoal);
       
     function createRemoveButton (onClick) {
       const removeBtn = document.createElement('button');  //this creates a new element
@@ -156,19 +156,19 @@
     }
     
     function addTodoToDOM (todo) {
-      const node = document.createElement('li')
-      const text = document.createTextNode(todo.name)
+      const node = document.createElement('li');
+      const text = document.createTextNode(todo.name);
       const removeBtn = createRemoveButton(() => {
-        store.dispatch(removeTodoAction(todo.id))
-      })
-      node.appendChild(text)
-      node.appendChild(removeBtn)
-      node.style.textDecoration = todo.complete ? 'line-through' : 'none'
+        store.dispatch(removeTodoAction(todo.id));
+      });
+      node.appendChild(text);
+      node.appendChild(removeBtn);
+      node.style.textDecoration = todo.complete ? 'line-through' : 'none';
       node.addEventListener('click', () => {
-        store.dispatch(toggleTodoAction(todo.id))
-      })
+        store.dispatch(toggleTodoAction(todo.id)); //this is the action creator
+      });
       document.getElementById('todos')
-        .appendChild(node)
+        .appendChild(node);
     }
     
     function addGoalToDOM (goal) {
