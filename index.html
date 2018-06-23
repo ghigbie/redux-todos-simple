@@ -102,6 +102,7 @@
       ){
         alert(alertMessage);
       }
+      return store.dispatch(action);
     }
     
   
@@ -123,7 +124,7 @@
       const input = document.getElementById('todo');
       const name = input.value;
       input.value = '';
-      store.dispatch(addTodoAction({
+      checkAndDispatch(store, addTodoAction({
         name,
         complete: false,
         id: generateId()
@@ -134,7 +135,7 @@
       const input = document.getElementById('goal');
       const name = input.value;
       input.value = '';
-      store.dispatch(addGoalAction({
+      checkAndDispatch(store, addGoalAction({
         id: generateId(),
         name,
       }));
