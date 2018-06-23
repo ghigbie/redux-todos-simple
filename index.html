@@ -104,12 +104,18 @@
         }
         return next(action);
     };
+    
+    const logger = (store) => (next) => (action) =>{
+      console.group(action.type);
+        console.log(`The action is: ${action.type}`);
+      console.groupEnd();
+    };
   
     //This is the store created
     const store = Redux.createStore(Redux.combineReducers({
       todos,
       goals
-    }), Redux.applyMiddleware(checker));//Here the combine reducers function is passed in and middleware is passsed in as the second argument
+    }), Redux.applyMiddleware(checker, logger));//Here the combine reducers function is passed in and middleware is passsed in as the second argument
     
     store.subscribe(() => {
       const { goals, todos } = store.getState();
