@@ -87,6 +87,23 @@
           return state;
       }
     }
+    //Middle ware
+    function checkAndDispatch (store, action){
+      const alertMessage = 'Nope! No bitcoin! That\'s a bad idea.';
+      if(
+        action.type === ADD_TODO &&
+        action.todo.name.toLowerCase().includes('bitcoin')
+      ){
+        alert(alertMessage);
+      }
+      if(
+        action.type === ADD_GOAL &&
+        action.goal.name.toLowerCase().includes('bitcoin')
+      ){
+        alert(alertMessage);
+      }
+    }
+    
   
     //This is the store created
     const store = Redux.createStore(Redux.combineReducers({
