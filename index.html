@@ -22,6 +22,7 @@
     const TOGGLE_TODO = 'TOGGLE_TODO';
     const ADD_GOAL = 'ADD_GOAL';
     const REMOVE_GOAL = 'REMOVE_GOAL';
+    const RECEIVE_DATA = 'RECEIVE_DATA';
     
     //These are ACTION CREATORS, whish will be used to dispatch actions to the reducer
     function addTodoAction (todo) {
@@ -54,6 +55,14 @@
         id,
       };
     }
+    
+    function receiveDataAction(todos, goals){
+      return {
+        type: RECEIVE_DATA,
+        todos,
+        goals
+      }
+    }
     //The todos reducer
     function todos (state = [], action) {
       switch(action.type) {
@@ -64,6 +73,8 @@
         case TOGGLE_TODO :
           return state.map((todo) => todo.id !== action.id ? todo :
             Object.assign({}, todo, { complete: !todo.complete })); //This function replaces the teh complete property on the object with the opposite, using the Object.assign function
+        case RECEIVE_DATA :
+          return action.todos //This is returned becase todos is an empty array
         default :
           return state;
       }
@@ -76,6 +87,8 @@
           return state.concat([action.goal]);
         case REMOVE_GOAL :
           return state.filter((goal) => goal.id !== action.id); //This will return the goals that do not match the filtered goal
+        case RECEIVE_DATA :
+          return action.goals //This is retruend here becuase this is an empty array
         default :
           return state;
       }
