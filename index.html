@@ -160,14 +160,18 @@
       class Todos extends React.Component { //this is an uncontrolled component
         addItem = (e) => {
           e.preventDefault();
-          const name = this.input.value;
-          this.input.value = '';
-          this.props.store.dispatch(addTodoAction({
-            name,
-            complete: false,
-            id: generateId()
-          }));
+          
+          return API.saveTodo(this.input.value)
+            .then((todo) => {
+              this.props.store.dispatch(addTodoAction(todo); //This is passed the new todoItem that comes back from the server
+              this.input.value = '';
+            })
+            .catch(() => {
+              alert('There was an error. Please try again.');
+            });
+          //No optimistic updates to add an item.
         }
+      }
         
         removeItem = (todo) => {
           this.props.store.dispatch(removeTodoAction(todo.id));
