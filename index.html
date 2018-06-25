@@ -163,7 +163,7 @@
           
           return API.saveTodo(this.input.value)
             .then((todo) => {
-              this.props.store.dispatch(addTodoAction(todo); //This is passed the new todoItem that comes back from the server
+              this.props.store.dispatch(addTodoAction(todo)); //This is passed the new todoItem that comes back from the server
               this.input.value = ''; //clear the input field
             })
             .catch(() => {
@@ -171,7 +171,6 @@
             });
           //No optimistic updates to add an item.
         }
-      }
         
         removeItem = (todo) => {
           this.props.store.dispatch(removeTodoAction(todo.id));
@@ -188,7 +187,7 @@
             .catch(() => {
               this.props.store.dispatch(toggleTodoAction(id));
               alert('An error occured. Please try again.')
-            })
+            });
         }
         
         render(){
