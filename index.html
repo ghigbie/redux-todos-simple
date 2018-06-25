@@ -93,6 +93,16 @@
           return state;
       }
     }
+    
+    //The loading reducer
+    function loading (state = true, action){
+      switch(action.type){
+        case RECEIVE_DATA :
+          return false;
+        default :
+          return state;
+      }
+    }
     //Middle ware
     const checker = (store) => (next) => (action) => {
         const alertMessage = 'Nope! No bitcoin! That\'s a bad idea.';
