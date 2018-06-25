@@ -103,6 +103,7 @@
           return state;
       }
     }
+    
     //Middle ware
     const checker = (store) => (next) => (action) => {
         const alertMessage = 'Nope! No bitcoin! That\'s a bad idea.';
@@ -133,7 +134,8 @@
     //This is the store created
     const store = Redux.createStore(Redux.combineReducers({
       todos,
-      goals
+      goals,
+      loading
     }), Redux.applyMiddleware(checker, logger));//Here the combine reducers function is passed in and middleware is passsed in as the second argument
     
   </script>
@@ -236,7 +238,11 @@
         
         render(){
           const { store } = this.props;
-          const { todos, goals } = store.getState();
+          const { todos, goals, loading } = store.getState();
+          
+          if(loading){ //This will show if loading === true
+            return (<h3>Loading...</h3>);
+          }
           
           return(
             <div>
