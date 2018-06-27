@@ -25,6 +25,8 @@
     const REMOVE_GOAL = 'REMOVE_GOAL';
     const RECEIVE_DATA = 'RECEIVE_DATA';
     
+    const errorMessage = 'An error occured. Please try again.';
+    
     //These are ACTION CREATORS, whish will be used to dispatch actions to the reducer
     function addTodoAction (todo) {
       return {
@@ -71,10 +73,11 @@
           return API.deleteTodo(todo.id)
             .catch(() => {
               dispatch(addTodoAction(todo));
-              alert('An error occurred. Pleae try again.');
+              alert(errorMessage);
             });
       }
     }
+
     //The todos reducer
     function todos (state = [], action) {
       switch(action.type) {
@@ -179,7 +182,7 @@
               this.input.value = ''; //clear the input field
             })
             .catch(() => {
-              alert('There was an error. Please try again.');
+              alert(errorMessage);
             });
           //No optimistic updates to add an item.
         }
@@ -191,7 +194,7 @@
           // return API.deleteTodo(todo.id)
           //   .catch(() => {
           //     this.props.store.dispatch(addTodoAction(todo));
-          //     alert('An error occurred. Pleae try again.');
+          //     alert(errorMessage);
           //   });
         }
         
@@ -200,7 +203,7 @@
           return API.saveTodoToggle(id)
             .catch(() => {
               this.props.store.dispatch(toggleTodoAction(id));
-              alert('An error occured. Please try again.')
+              alert(errorMessage);
             });
         }
         
@@ -229,7 +232,7 @@
               this.props.store.dispatch(addGoalAction(goal)); //This is passed the new goal item that comes back from the API call
               this.input.value = '';//this will clear the input field
             })
-            .catch(() => alert('There was an error. Please try again.'));
+            .catch(() => alert(errorMessage));
         //There is no optimistic loading here. 
         }
         
@@ -238,7 +241,7 @@
           return API.deleteGoal(goal.id)
             .catch(() => {
               this.props.store.dispatch(addGoalAction(goal));
-              alert('An error occurred. Please try again.');
+              alert(errorMessage);
             });
         }
         
